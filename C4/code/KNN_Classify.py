@@ -1,6 +1,7 @@
 import numpy as np
 from math import sqrt
 from collections import Counter
+from C4.code.metrics import accuracy_score
 
 
 class KNN_Classify:
@@ -39,8 +40,7 @@ class KNN_Classify:
         assert x.shape[0] == self._X_train.shape[1], \
             "the feature number of x must be equal to X_train"
 
-        distances = [sqrt(np.sum((x_train - x) ** 2))
-                     for x_train in self._X_train]
+        distances = [sqrt(np.sum((x_train - x) ** 2)) for x_train in self._X_train]
         nearest = np.argsort(distances)
 
         topK_y = [self._y_train[i] for i in nearest[:self.k]]
@@ -50,3 +50,8 @@ class KNN_Classify:
 
     def __repr__(self):
         return "KNN(k=%d)" % self.k
+
+    def score(self, X_test, y_test):
+        #    根据测试集确定当前模型准确度
+        y_predict = self.predict(X_test)
+        return accuracy_score(y_true=y_test, y_predict=y_predict)
