@@ -30,8 +30,4 @@ class SimpleLinearRegression:
         return x_single_predict * self.a_ + self.b_
 
 
-x = np.array([1., 2., 3., 4., 5.])
-y = np.array([1., 3., 2., 3., 5.])
-simpleLinearRegression = SimpleLinearRegression()
-simpleLinearRegression.fit(x, y)
-print(simpleLinearRegression.predict(np.array([6])))
+
